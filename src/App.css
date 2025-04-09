@@ -1,0 +1,73 @@
+:root {
+    --body-font: "Inter", sans-serif;
+    --body-bg-color: #FAFAFA;
+    --text-color: #0A0A0A;
+    --main-font-size: 1rem;
+    --white: #ffffff;
+    --black: #000000;
+    --primary: #171717;
+    --primary-dark: #262626;
+    --secondary-color: #FAFAF9;
+    --border-color: #E5E5E5;
+    --card-shadow: rgba(0, 0, 0, .05) 0px 4px 6px;
+}
+
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+html, .app {
+    font-family: var(--body-font);
+    font-weight: 400;
+    font-size: var(--main-font-size);
+    line-height: 1.5;
+    color: var(--text-color);
+    background-color: var(--body-bg-color);
+}
+
+header {
+    background-color: white;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center; 
+    padding: 20px;
+    gap: 10px; 
+}
+
+header h1 {
+    text-align: center;
+}
+
+.github-btn {
+    display: flex;
+    align-items: center; 
+    gap: 10px; 
+    padding: 10px 20px;
+    border: none;
+    background-color: var(--primary);
+    color: var(--white);
+    cursor: pointer;
+    border-radius: 5px;
+    font-weight: 600;
+}
+
+.github-btn p {
+    margin: 0;
+}
+
+
+@media (min-width: 630px) {
+    header {
+        flex-direction: row;
+        justify-content: space-between;
+        align-items: center;
+        padding: 20px 40px;
+    }
+
+    header h1 {
+        text-align: left;
+    }
+}
