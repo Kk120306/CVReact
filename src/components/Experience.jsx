@@ -1,13 +1,23 @@
-import { useState } from 'react';
+import { useState, useEffect } from 'react';
 
 function Experience({ info, updateInfo, onRemove }) {
     const [hidden, setHidden] = useState(false);
     const [experienceData, setExperienceData] = useState(info);
 
+    useEffect(() => {
+        setExperienceData(info);
+    }, [info]);
+
     const handleChange = (e) => {
-        const newData = { ...experienceData, [e.target.name]: e.target.value };
-        setExperienceData(newData);
-        updateInfo(newData);
+        const { name, value } = e.target;
+        setExperienceData((prev) => ({
+            ...prev,
+            [name]: value,
+        }));
+    };
+
+    const handleBlur = () => {
+        updateInfo(experienceData);
     };
 
     return (
@@ -29,86 +39,42 @@ function Experience({ info, updateInfo, onRemove }) {
             </div>
             <div className={`form-content ${hidden ? 'hidden' : 'expand'}`}>
                 <form>
-                    <div className="form-group">
-                        <label htmlFor="company">Company</label>
-                        <input
-                            type="text"
-                            id="company"
-                            name="company"
-                            value={experienceData.company}
-                            onChange={handleChange}
-                        />
-                    </div>
-                    <div className="form-group">
-                        <label htmlFor="position">Position</label>
-                        <input
-                            type="text"
-                            id="position"
-                            name="position"
-                            value={experienceData.position}
-                            onChange={handleChange}
-                        />
-                    </div>
-                    <div className="form-group">
-                        <label htmlFor="responsibilities">Responsibilities</label>
-                        <textarea
-                            id="responsibilities"
-                            name="responsibilities"
-                            value={experienceData.responsibilities}
-                            onChange={handleChange}
-                        />
-                    </div>
-                    <div className="form-group">
-                        <label htmlFor="dateFrom">Start Date</label>
-                        <input
-                            type="date"
-                            id="dateFrom"
-                            name="dateFrom"
-                            value={experienceData.dateFrom || ""}
-                            onChange={handleChange}
-                        />
-                    </div>
-                    <div className="form-group">
-                        <label htmlFor="dateUntil">End Date</label>
-                        <input
-                            type="date"
-                            id="dateUntil"
-                            name="dateUntil"
-                            value={experienceData.dateUntil || ""}
-                            onChange={handleChange}
-                        />
-                    </div>
-                    <div className="form-group">
-                        <label htmlFor="location">Location</label>
-                        <input
-                            type="text"
-                            id="location"
-                            name="location"
-                            value={experienceData.location}
-                            onChange={handleChange}
-                        />
-                    </div>
-                    <div className="form-group">
-                        <label htmlFor="technologies">Technologies</label>
-                        <input
-                            type="text"
-                            id="technologies"
-                            name="technologies"
-                            value={experienceData.technologies}
-                            onChange={handleChange}
-                        />
-                    </div>
-                    <div className="form-group">
-                        <label htmlFor="achievements">Achievements</label>
-                        <textarea
-                            id="achievements"
-                            name="achievements"
-                            value={experienceData.achievements}
-                            onChange={handleChange}
-                        />
-                    </div>
+                    {[
+                        { label: 'Company', type: 'text', name: 'company' },
+                        { label: 'Position', type: 'text', name: 'position' },
+                        { label: 'Responsibilities', type: 'textarea', name: 'responsibilities' },
+                        { label: 'Start Date', type: 'date', name: 'dateFrom' },
+                        { label: 'End Date', type: 'date', name: 'dateUntil' },
+                        { label: 'Location', type: 'text', name: 'location' },
+                        { label: 'Technologies', type: 'text', name: 'technologies' },
+                        { label: 'Achievements', type: 'textarea', name: 'achievements' },
+                    ].map(({ label, type, name }) => (
+                        <div key={name} className="form-group">
+                            <label htmlFor={name}>{label}</label>
+                            {type === 'textarea' ? (
+                                <textarea
+                                    id={name}
+                                    name={name}
+                                    value={experienceData[name] || ''}
+                                    onChange={handleChange}
+                                    onBlur={handleBlur}
+                                />
+                            ) : (
+                                <input
+                                    type={type}
+                                    id={name}
+                                    name={name}
+                                    value={experienceData[name] || ''}
+                                    onChange={handleChange}
+                                    onBlur={handleBlur}
+                                />
+                            )}
+                        </div>
+                    ))}
                 </form>
             </div>
         </div>
     );
 }
+
+export default Experience;

@@ -5,6 +5,8 @@ import linkedinIcon from './assets/linkedin.svg';
 import whiteGithubIcon from './assets/github_white.svg';
 import Education from './components/Education';
 import Personal from './components/Personal';
+import Experience from './components/Experience';
+import Skill from './components/Skill';
 
 function App() {
 
@@ -187,7 +189,6 @@ function App() {
                             <button className="add-btn" type="button" onClick={addEducation}>
                                 Add Education
                             </button>
-                            {/* Education Map */}
                             {education.map(edu => (
                                 <Education
                                     key={edu.id}
@@ -209,7 +210,19 @@ function App() {
                             <button className="add-btn" type="button" onClick={addExperience}>
                                 Add Experience
                             </button>
-                            {/* Experience Map all TODO */}
+                            {experience.map(exp => (
+                                <Experience
+                                    key={exp.id}
+                                    info={exp}
+                                    updateInfo={(newData) => {
+                                        setExperience(experience.map(e =>
+                                            e.id === exp.id ? { ...e, ...newData } : e
+                                        ));
+                                    }}
+                                    onRemove={() => removeExperience(exp.id)}
+
+                                />
+                            ))};
                         </div>
                     </div>
 
@@ -220,6 +233,19 @@ function App() {
                                 Add Skill
                             </button>
                             {/* Skills Map all TODO */}
+                            {skills.map(skill => (
+                                <Skill
+                                    key={skill.id}
+                                    info={skill}
+                                    updateInfo={(newData) => {
+                                        setSkills(skills.map(s =>
+                                            s.id === skill.id ? { ...s, ...newData } : s
+                                        ));
+                                    }}
+                                    onRemove={() => removeSkill(skill.id)}
+                                />
+                            ))
+                            }
                         </div>
                     </div>
                 </div>
@@ -276,10 +302,11 @@ function App() {
                                     <p>{exp.responsibilities}</p>
                                     <p>{exp.technologies}</p>
                                     <ul>
-                                        {exp.achievements.map((ach, index) => (
+                                        {(Array.isArray(exp.achievements) ? exp.achievements : [exp.achievements]).map((ach, index) => (
                                             <li key={index}>{ach}</li>
                                         ))}
                                     </ul>
+
                                 </div>
                             ))}
                         </div>
