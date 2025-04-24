@@ -8,6 +8,7 @@
     --primary: #171717;
     --primary-dark: #262626;
     --secondary-color: #FAFAF9;
+    --thirdary-color: #F5F5F5;
     --border-color: #E5E5E5;
     --card-shadow: rgba(0, 0, 0, .05) 0px 4px 6px;
 }
@@ -16,9 +17,22 @@
     margin: 0;
     padding: 0;
     box-sizing: border-box;
+    word-wrap: break-word;
+    overflow-wrap: break-word;
 }
 
-html, .app {
+html {
+    font-size: 14px;
+}
+
+@media (min-width: 500px) {
+    html {
+        font-size: 16px;
+    }
+}
+
+html,
+.app {
     font-family: var(--body-font);
     font-weight: 400;
     font-size: var(--main-font-size);
@@ -32,19 +46,25 @@ header {
     display: flex;
     flex-direction: column;
     justify-content: center;
-    align-items: center; 
+    align-items: flex-start;
     padding: 20px;
-    gap: 10px; 
+    gap: 15px;
 }
 
 header h1 {
-    text-align: center;
+    text-align: left;
+}
+
+.App-container {
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
 }
 
 .github-btn {
     display: flex;
-    align-items: center; 
-    gap: 10px; 
+    align-items: center;
+    gap: 10px;
     padding: 10px 20px;
     border: none;
     background-color: var(--primary);
@@ -58,6 +78,199 @@ header h1 {
     margin: 0;
 }
 
+.Form-container {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    gap: 20px;
+    padding: 10px;
+}
+
+.Education-container,
+.Personal-container,
+.Experience-container,
+.Skills-container {
+    background-color: var(--white);
+    width: 100%;
+    max-width: 800px;
+    margin: 10px;
+    border-radius: 10px;
+    box-shadow: var(--card-shadow);
+    padding: 15px;
+}
+
+.form-head {
+    text-align: center;
+    margin-bottom: 15px;
+}
+
+.form-group label {
+    font-weight: 600;
+    margin-bottom: 10px;
+}
+
+form {
+    display: grid;
+    grid-template-columns: 1fr;
+    gap: 20px;
+}
+
+@media (min-width: 600px) {
+    form {
+        grid-template-columns: repeat(2, 1fr);
+    }
+}
+
+.Education-header,
+.Experience-header,
+.Skills-header {
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 15px;
+}
+
+.add-btn {
+    padding: 10px 20px;
+    border: unset;
+    border-radius: 15px;
+    color: #212121;
+    z-index: 1;
+    background: #e8e8e8;
+    position: relative;
+    font-weight: 1000;
+    font-size: 10px;
+    box-shadow: 4px 8px 19px -3px rgba(0, 0, 0, 0.27);
+    transition: all 250ms;
+    overflow: hidden;
+}
+
+.add-btn::before {
+    content: "";
+    position: absolute;
+    top: 0;
+    left: 0;
+    height: 100%;
+    width: 0;
+    border-radius: 15px;
+    background-color: #212121;
+    z-index: -1;
+    box-shadow: 4px 8px 19px -3px rgba(0, 0, 0, 0.27);
+    transition: all 250ms;
+}
+
+.add-btn:hover {
+    color: #e8e8e8;
+}
+
+.add-btn:hover::before {
+    width: 100%;
+}
+
+.node-header {
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 10px;
+    margin-bottom: 10px;
+    background-color: var(--thirdary-color);
+    border-radius: 5px;
+    padding: 10px;
+}
+
+.remove-btn {
+    background-color: #ff4d4d;
+    color: var(--white);
+    border: none;
+    padding: 5px 10px;
+    border-radius: 5px;
+    cursor: pointer;
+}
+
+.map {
+    display: flex;
+    flex-direction: column;
+    gap: 30px;
+    padding: 10px;
+    box-shadow: var(--card-shadow);
+}
+
+.education-node,
+.experience-node,
+.skills-node {
+    background-color: #e8e8e8;
+    border-radius: 10px;
+    padding: 10px;
+}
+
+.hidden {
+    display: none;
+}
+
+.Skill-map {
+    display: grid;
+    grid-template-columns: 1fr;
+    gap: 15px;
+}
+
+.skill-form {
+    display:contents;
+}
+
+
+
+@media (min-width: 500px) {
+    .Skill-map {
+        grid-template-columns: repeat(3, 1fr);
+    }
+}
+
+input,
+textarea {
+    width: 100%;
+    height: 45px;
+    line-height: 30px;
+    padding: 0.5rem 1rem;
+    border: 2px solid transparent;
+    border-radius: 10px;
+    outline: none;
+    background-color: #f8fafc;
+    color: #0d0c22;
+    transition: .5s ease;
+    margin-top: 5px;
+    resize: vertical;
+    min-height: 45px;
+}
+
+input::placeholder,
+textarea::placeholder {
+    color: #94a3b8;
+}
+
+input:focus,
+input:hover,
+textarea:focus,
+textarea:hover {
+    outline: none;
+    border-color: rgba(129, 140, 248);
+    background-color: #fff;
+    box-shadow: 0 0 0 5px rgb(129 140 248 / 30%);
+}
+
+@media (min-width: 500px) {
+    input,
+    textarea {
+        padding-left: 2.5rem;
+        padding: 0.5rem 1rem;
+    }
+    .node-header {
+        flex-direction: row;
+        justify-content: space-between;
+        align-items: center;
+    }
+}
 
 @media (min-width: 630px) {
     header {
@@ -69,5 +282,19 @@ header h1 {
 
     header h1 {
         text-align: left;
+    }
+}
+
+@media (min-width: 1024px) {
+    .App-container {
+        flex-direction: row;
+        gap: 15px;
+    }
+
+    .Education-container,
+    .Personal-container,
+    .Experience-container,
+    .Skills-container {
+        max-width: 700px;
     }
 }

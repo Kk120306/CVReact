@@ -1,5 +1,6 @@
 import { useState, useEffect } from 'react';
 
+
 function Experience({ info, updateInfo, onRemove }) {
     const [hidden, setHidden] = useState(false);
     const [experienceData, setExperienceData] = useState(info);
@@ -23,8 +24,8 @@ function Experience({ info, updateInfo, onRemove }) {
     return (
         <div className="experience-node">
             <div className="node-header" onClick={() => setHidden(!hidden)}>
+                <h2>Experience</h2>
                 <div>
-                    <h2>Experience</h2>
                     <button
                         className="remove-btn"
                         onClick={(e) => {
@@ -74,7 +75,7 @@ function Experience({ info, updateInfo, onRemove }) {
                 </form>
             </div>
         </div>
-    );
+    )
 }
 
 export default Experience;

@@ -13,8 +13,8 @@ function Skill({ info, updateInfo, onRemove }) {
     return (
         <div className="skill-node">
             <div className="node-header" onClick={() => setHidden(!hidden)}>
+                <h2>Skill</h2>
                 <div>
-                    <h2>Skill</h2>
                     <button
                         className="remove-btn"
                         onClick={(e) => {
@@ -28,9 +28,9 @@ function Skill({ info, updateInfo, onRemove }) {
                 </div>
             </div>
             <div className={`form-content ${hidden ? 'hidden' : 'expand'}`}>
-                <form>
+                <form className="skill-form">
                     <div className="form-group">
-                        <label htmlFor="skill">Skill</label>
+                        <label htmlFor="skill"></label>
                         <input
                             type="text"
                             id="skill"

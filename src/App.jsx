@@ -7,6 +7,8 @@ import Education from './components/Education';
 import Personal from './components/Personal';
 import Experience from './components/Experience';
 import Skill from './components/Skill';
+import './styles/Input.css';
+
 
 function App() {
 
@@ -158,167 +160,181 @@ function App() {
             <div className="App">
                 <header className="App-header">
                     <h1 className="App-logo">Resume Builder</h1>
-                    <button className="github-btn" type="button">
+                    <a
+                        href="https://github.com/Kk120306"
+                        target="_blank"
+                        rel="noopener noreferrer"
+                        className="github-btn"
+                        style={{ textDecoration: "none" }}
+                    >
                         <p>Kk120306</p>
                         <img src={whiteGithubIcon} alt="github" width="20px" />
-                    </button>
+                    </a>
                 </header>
 
-                {/* Form Input */}
-                <div className="Form-container">
-                    {/* Personal Info */}
-                    <div className="Personal-container">
-                        <div className="Personal-header">
-                            <h2>Personal Info</h2>
-                            <Personal
-                                key={1}
-                                info={personalInfo}
-                                updateInfo={(newData) => {
-                                    setPersonalInfo({ ...personalInfo, ...newData });
-                                }}
-                                onRemove={() => { }}
-                            />
-                        </div>
-                    </div>
+                <div className="App-container">
 
-                    {/* Education Info */}
-
-                    <div className="Education-container">
-                        <div className="Education-header">
-                            <h2>Education</h2>
-                            <button className="add-btn" type="button" onClick={addEducation}>
-                                Add Education
-                            </button>
-                            {education.map(edu => (
-                                <Education
-                                    key={edu.id}
-                                    info={edu}
+                    {/* Form Input */}
+                    <div className="Form-container">
+                        {/* Personal Info */}
+                        <div className="Personal-container">
+                            <div className="Personal-header">
+                                <h2 className="form-head">Personal Info</h2>
+                                <Personal
+                                    key={1}
+                                    info={personalInfo}
                                     updateInfo={(newData) => {
-                                        setEducation(education.map(e =>
-                                            e.id === edu.id ? { ...e, ...newData } : e
-                                        ));
+                                        setPersonalInfo({ ...personalInfo, ...newData });
                                     }}
-                                    onRemove={() => removeEducation(edu.id)}
                                 />
-                            ))}
-                        </div>
-                    </div>
-
-                    <div className="Experience-container">
-                        <div className="Experience-header">
-                            <h2>Experience</h2>
-                            <button className="add-btn" type="button" onClick={addExperience}>
-                                Add Experience
-                            </button>
-                            {experience.map(exp => (
-                                <Experience
-                                    key={exp.id}
-                                    info={exp}
-                                    updateInfo={(newData) => {
-                                        setExperience(experience.map(e =>
-                                            e.id === exp.id ? { ...e, ...newData } : e
-                                        ));
-                                    }}
-                                    onRemove={() => removeExperience(exp.id)}
-
-                                />
-                            ))};
-                        </div>
-                    </div>
-
-                    <div className="Skills-container">
-                        <div className="Skills-header">
-                            <h2>Skills</h2>
-                            <button className="add-btn" type="button" onClick={addSkill}>
-                                Add Skill
-                            </button>
-                            {/* Skills Map all TODO */}
-                            {skills.map(skill => (
-                                <Skill
-                                    key={skill.id}
-                                    info={skill}
-                                    updateInfo={(newData) => {
-                                        setSkills(skills.map(s =>
-                                            s.id === skill.id ? { ...s, ...newData } : s
-                                        ));
-                                    }}
-                                    onRemove={() => removeSkill(skill.id)}
-                                />
-                            ))
-                            }
-                        </div>
-                    </div>
-                </div>
-
-
-                {/* Resume Preview */}
-                <div className="Preview-section">
-                    <div className="Cv-container">
-                        <div className="Cv-header">
-                            <h1>{personalInfo.firstName + " " + personalInfo.lastName}</h1>
-                            <p className="Header-location">
-                                {personalInfo.city + ", " + personalInfo.country}
-                            </p>
-                            <div className="Header-contact">
-                                <p>{personalInfo.phone}</p>
-                                <a href="https://www.gmail.com" target="_blank" rel="noopener noreferrer">
-                                    <p>{personalInfo.email}</p>
-                                </a>
-                                {personalInfo.github &&
-                                    <a href={personalInfo.github} target="_blank" rel="noopener noreferrer">
-                                        <img src={githubIcon} alt="github" width="50px" />
-                                    </a>
-                                }
-                                {personalInfo.linkedin &&
-                                    <a href={personalInfo.linkedin} target="_blank" rel="noopener noreferrer">
-                                        <img src={linkedinIcon} alt="linkedin" width="50px" />
-                                    </a>
-
-                                }
                             </div>
                         </div>
 
-                        <div className="Cv-education">
-                            <h2>Education</h2>
-                            {education.map(edu => (
-                                <div key={edu.id} className="Education-item">
-                                    <h3>{edu.school}</h3>
-                                    <p>{edu.title}</p>
-                                    <p>{edu.startDate + " - " + edu.endDate}</p>
-                                    <p>{edu.country}</p>
-                                    <p>{edu.achievements}</p>
-                                </div>
-                            ))}
+                        {/* Education Info */}
+
+                        <div className="Education-container">
+                            <div className="Education-header">
+                                <h2 className="form-head">Education</h2>
+                                <button className="add-btn" type="button" onClick={addEducation}>
+                                    Add Education
+                                </button>
+                            </div>
+                            <div className="map">
+                                {education.map(edu => (
+                                    <Education
+                                        key={edu.id}
+                                        info={edu}
+                                        updateInfo={(newData) => {
+                                            setEducation(education.map(e =>
+                                                e.id === edu.id ? { ...e, ...newData } : e
+                                            ));
+                                        }}
+                                        onRemove={() => removeEducation(edu.id)}
+                                    />
+                                ))}
+                            </div>
                         </div>
 
-                        <div className="Cv-experience">
-                            <h2>Experiences</h2>
-                            {experience.map(exp => (
-                                <div key={exp.id} className="Experience-item">
-                                    <h3>{exp.company}</h3>
-                                    <p>{exp.position}</p>
-                                    <p>{exp.dateFrom + " - " + exp.dateUntil}</p>
-                                    <p>{exp.location}</p>
-                                    <p>{exp.responsibilities}</p>
-                                    <p>{exp.technologies}</p>
-                                    <ul>
-                                        {(Array.isArray(exp.achievements) ? exp.achievements : [exp.achievements]).map((ach, index) => (
-                                            <li key={index}>{ach}</li>
-                                        ))}
-                                    </ul>
+                        <div className="Experience-container">
+                            <div className="Experience-header">
+                                <h2 className="form-head">Experience</h2>
+                                <button className="add-btn" type="button" onClick={addExperience}>
+                                    Add Experience
+                                </button>
+                            </div>
+                            <div className="map">
+                                {experience.map(exp => (
+                                    <Experience
+                                        key={exp.id}
+                                        info={exp}
+                                        updateInfo={(newData) => {
+                                            setExperience(experience.map(e =>
+                                                e.id === exp.id ? { ...e, ...newData } : e
+                                            ));
+                                        }}
+                                        onRemove={() => removeExperience(exp.id)}
 
-                                </div>
-                            ))}
+                                    />
+                                ))}
+                            </div>
                         </div>
 
-                        <div className="Cv-skills">
-                            <h2>Skills</h2>
-                            <div className="Skill-cotnainer">
+                        <div className="Skills-container">
+                            <div className="Skills-header">
+                                <h2 className="form-head">Skills</h2>
+                                <button className="add-btn" type="button" onClick={addSkill}>
+                                    Add Skill
+                                </button>
+                            </div>
+                            {/* Skills Map all TODO */}
+                            <div className="Skill-map">
                                 {skills.map(skill => (
-                                    <div key={skill.id} className="Skill-item">
-                                        <p>{skill.name}</p>
+                                    <Skill
+                                        key={skill.id}
+                                        info={skill}
+                                        updateInfo={(newData) => {
+                                            setSkills(skills.map(s =>
+                                                s.id === skill.id ? { ...s, ...newData } : s
+                                            ));
+                                        }}
+                                        onRemove={() => removeSkill(skill.id)}
+                                    />
+                                ))
+                                }
+                            </div>
+                        </div>
+                    </div>
+
+
+                    {/* Resume Preview */}
+                    <div className="Preview-section">
+                        <div className="Cv-container">
+                            <div className="Cv-header">
+                                <h1>{personalInfo.firstName + " " + personalInfo.lastName}</h1>
+                                <p className="Header-location">
+                                    {personalInfo.city + ", " + personalInfo.country}
+                                </p>
+                                <div className="Header-contact">
+                                    <p>{personalInfo.phone}</p>
+                                    <a href="https://www.gmail.com" target="_blank" rel="noopener noreferrer">
+                                        <p>{personalInfo.email}</p>
+                                    </a>
+                                    {personalInfo.github &&
+                                        <a href={personalInfo.github} target="_blank" rel="noopener noreferrer">
+                                            <img src={githubIcon} alt="github" width="50px" />
+                                        </a>
+                                    }
+                                    {personalInfo.linkedin &&
+                                        <a href={personalInfo.linkedin} target="_blank" rel="noopener noreferrer">
+                                            <img src={linkedinIcon} alt="linkedin" width="50px" />
+                                        </a>
+
+                                    }
+                                </div>
+                            </div>
+
+                            <div className="Cv-education">
+                                <h2>Education</h2>
+                                {education.map(edu => (
+                                    <div key={edu.id} className="Education-item">
+                                        <h3>{edu.school}</h3>
+                                        <p>{edu.title}</p>
+                                        <p>{edu.startDate + " - " + edu.endDate}</p>
+                                        <p>{edu.country}</p>
+                                        <p>{edu.achievements}</p>
                                     </div>
                                 ))}
+                            </div>
+
+                            <div className="Cv-experience">
+                                <h2>Experiences</h2>
+                                {experience.map(exp => (
+                                    <div key={exp.id} className="Experience-item">
+                                        <h3>{exp.company}</h3>
+                                        <p>{exp.position}</p>
+                                        <p>{exp.dateFrom + " - " + exp.dateUntil}</p>
+                                        <p>{exp.location}</p>
+                                        <p>{exp.responsibilities}</p>
+                                        <p>{exp.technologies}</p>
+                                        <ul>
+                                            {(Array.isArray(exp.achievements) ? exp.achievements : [exp.achievements]).map((ach, index) => (
+                                                <li key={index}>{ach}</li>
+                                            ))}
+                                        </ul>
+
+                                    </div>
+                                ))}
+                            </div>
+
+                            <div className="Cv-skills">
+                                <h2>Skills</h2>
+                                <div className="Skill-cotnainer">
+                                    {skills.map(skill => (
+                                        <div key={skill.id} className="Skill-item">
+                                            <p>{skill.name}</p>
+                                        </div>
+                                    ))}
+                                </div>
                             </div>
                         </div>
                     </div>

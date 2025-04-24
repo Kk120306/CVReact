@@ -1,7 +1,7 @@
 import { useState } from "react";
 
-function Personal({ info, updateInfo, onRemove }) {
-    const [hidden, setHidden] = useState(false);
+
+function Personal({ info, updateInfo}) {
     const [personalData, setPersonalData] = useState(info);
 
     const handleChange = (e) => {
@@ -12,22 +12,7 @@ function Personal({ info, updateInfo, onRemove }) {
 
     return (
         <div className="personal-node">
-            <div className="node-header" onClick={() => setHidden(!hidden)}>
-                <div>
-                    <h2>Personal</h2>
-                    <button
-                        className="remove-btn"
-                        onClick={(e) => {
-                            e.stopPropagation();
-                            onRemove();
-                        }}
-                    >
-                        Remove
-                    </button>
-                    <span style={{ marginLeft: '8px' }}>{hidden ? '▼' : '▲'}</span>
-                </div>
-            </div>
-            <div className={`form-content ${hidden ? 'hidden' : 'expand'}`}>
+            <div className="form-content">
                 <form>
                     <div className="form-group">
                         <label htmlFor="firstName">First Name</label>

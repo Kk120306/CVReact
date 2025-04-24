@@ -1,5 +1,6 @@
 import { useState } from 'react';
 
+
 function Education({ info, updateInfo, onRemove }) {
     const [hidden, setHidden] = useState(false);
     const [educationData, setEducationData] = useState(info);
@@ -13,8 +14,8 @@ function Education({ info, updateInfo, onRemove }) {
     return (
         <div className="education-node">
             <div className="node-header" onClick={() => setHidden(!hidden)}>
+                <h2>Education</h2>
                 <div>
-                    <h2>Education</h2>
                     <button
                         className="remove-btn"
                         onClick={(e) => {
