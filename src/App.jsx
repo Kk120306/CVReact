@@ -167,8 +167,10 @@ function App() {
                         className="github-btn"
                         style={{ textDecoration: "none" }}
                     >
-                        <p>Kk120306</p>
-                        <img src={whiteGithubIcon} alt="github" width="20px" />
+                        <div class="github-btn-container">
+                            <p>Kk120306</p>
+                            <img src={whiteGithubIcon} alt="github" width="20px" />
+                        </div>
                     </a>
                 </header>
 
@@ -275,21 +277,25 @@ function App() {
                                     {personalInfo.city + ", " + personalInfo.country}
                                 </p>
                                 <div className="Header-contact">
-                                    <p>{personalInfo.phone}</p>
-                                    <a href="https://www.gmail.com" target="_blank" rel="noopener noreferrer">
-                                        <p>{personalInfo.email}</p>
-                                    </a>
-                                    {personalInfo.github &&
-                                        <a href={personalInfo.github} target="_blank" rel="noopener noreferrer">
-                                            <img src={githubIcon} alt="github" width="50px" />
+                                    <div className="Contact-info">
+                                        <p>{personalInfo.phone}</p>
+                                        <a href="https://www.gmail.com" target="_blank" rel="noopener noreferrer">
+                                            <p> {personalInfo.email}</p>
                                         </a>
-                                    }
-                                    {personalInfo.linkedin &&
-                                        <a href={personalInfo.linkedin} target="_blank" rel="noopener noreferrer">
-                                            <img src={linkedinIcon} alt="linkedin" width="50px" />
-                                        </a>
+                                    </div>
+                                    <div className="Header-social">
+                                        {personalInfo.github &&
+                                            <a href={personalInfo.github} target="_blank" rel="noopener noreferrer">
+                                                <img src={githubIcon} alt="github" width="20px" />
+                                            </a>
+                                        }
+                                        {personalInfo.linkedin &&
+                                            <a href={personalInfo.linkedin} target="_blank" rel="noopener noreferrer">
+                                                <img src={linkedinIcon} alt="linkedin" width="20px" />
+                                            </a>
 
-                                    }
+                                        }
+                                    </div>
                                 </div>
                             </div>
 
@@ -297,38 +303,53 @@ function App() {
                                 <h2>Education</h2>
                                 {education.map(edu => (
                                     <div key={edu.id} className="Education-item">
-                                        <h3>{edu.school}</h3>
-                                        <p>{edu.title}</p>
-                                        <p>{edu.startDate + " - " + edu.endDate}</p>
-                                        <p>{edu.country}</p>
-                                        <p>{edu.achievements}</p>
+                                        <div className="edu-left">
+                                            <h3>{edu.school}</h3>
+                                            <p><em>{edu.title}</em></p>
+                                            <ul className="edu-bullets">
+                                                <li><strong>Achivements:</strong> {edu.achievements}</li>
+                                            </ul>
+                                        </div>
+                                        <div className="edu-right">
+                                            <p><strong>{edu.country}</strong></p>
+                                            <p><em>{`Expected Graduation, ${edu.endDate}`}</em></p>
+                                        </div>
                                     </div>
                                 ))}
                             </div>
 
+
                             <div className="Cv-experience">
-                                <h2>Experiences</h2>
+                                <h2 className="section-title">EXPERIENCE</h2>
                                 {experience.map(exp => (
-                                    <div key={exp.id} className="Experience-item">
-                                        <h3>{exp.company}</h3>
-                                        <p>{exp.position}</p>
-                                        <p>{exp.dateFrom + " - " + exp.dateUntil}</p>
-                                        <p>{exp.location}</p>
-                                        <p>{exp.responsibilities}</p>
-                                        <p>{exp.technologies}</p>
-                                        <ul>
+                                    <div key={exp.id} className="experience-item">
+                                        <div className="experience-header">
+                                            <div className="experience-left">
+                                                <h3 className="company">{exp.company}</h3>
+                                                <p className="position">{exp.position}</p>
+                                            </div>
+                                            <div className="experience-right">
+                                                <div className="experience-meta">
+                                                    <p className="location">{exp.location}</p>
+                                                    <p className="dates">{exp.dateFrom} – {exp.dateUntil}</p>
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <p className="responsibilities">{exp.responsibilities}</p>
+                                        <p className="technologies"><strong>Technologies:</strong> {exp.technologies}</p>
+                                        <ul className="achievement-list">
                                             {(Array.isArray(exp.achievements) ? exp.achievements : [exp.achievements]).map((ach, index) => (
                                                 <li key={index}>{ach}</li>
                                             ))}
                                         </ul>
-
                                     </div>
                                 ))}
                             </div>
 
+
                             <div className="Cv-skills">
                                 <h2>Skills</h2>
-                                <div className="Skill-cotnainer">
+                                <div className="Skill-container">
                                     {skills.map(skill => (
                                         <div key={skill.id} className="Skill-item">
                                             <p>{skill.name}</p>

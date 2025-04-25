@@ -55,6 +55,13 @@ header h1 {
     text-align: left;
 }
 
+.github-btn-container {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+
 .App-container {
     display: flex;
     flex-direction: column;
@@ -216,7 +223,7 @@ form {
 }
 
 .skill-form {
-    display:contents;
+    display: contents;
 }
 
 
@@ -259,12 +266,177 @@ textarea:hover {
     box-shadow: 0 0 0 5px rgb(129 140 248 / 30%);
 }
 
+/* Resume Styles */
+
+.Preview-section {
+    background-color: white;
+}
+
+.Cv-container {
+    display: flex;
+    flex-direction: column;
+    gap: 5px;
+    padding: 20px;
+}
+
+.Cv-header {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+}
+
+.Contact-info {
+    display: flex;
+    gap: 10px;
+}
+
+.Header-social {
+    display: flex;
+    gap: 10px;
+    justify-content: center;
+    margin: 10px;
+}
+
+
+.Preview-section h2 {
+    font-size: clamp(1.3rem, 2vw, 2rem);
+    font-weight: bold;
+    text-transform: uppercase;
+    margin-bottom: 1rem;
+}
+
+
+.Cv-education,
+.Cv-experience,
+.Cv-skills {
+    margin: .2rem 0;
+    padding-top: 0.5rem;
+    border-top: 2px solid black;
+}
+
+.Education-item {
+    display: flex;
+    justify-content: space-between;
+    flex-wrap: wrap;
+    margin-bottom: 1rem;
+}
+
+.edu-left, .experience-left {
+    flex: 1 1 60%;
+}
+
+.edu-right, .experience-right {
+    flex: 1 1 35%;
+    text-align: right;
+    font-style: italic;
+}
+
+.edu-left h3 {
+    font-weight: bold;
+    font-size: clamp(1rem, 1.5vw, 1.4rem);
+    margin-bottom: 0.25rem;
+}
+
+.edu-left p {
+    margin: 0.2rem 0;
+    font-size: clamp(0.9rem, 1vw, 1.1rem);
+}
+
+.edu-bullets {
+    padding-left: 1.2rem;
+}
+
+.edu-bullets li {
+    margin: 0.2rem 0;
+    font-size: clamp(0.9rem, 1vw, 1.05rem);
+}
+
+
+
+.section-title {
+    font-size: clamp(1.5rem, 2.5vw, 2rem);
+    font-weight: bold;
+    border-bottom: 2px solid #000;
+    padding-bottom: 0.2rem;
+    margin-bottom: 1.2rem;
+}
+
+.experience-item {
+    margin-bottom: 2rem;
+}
+
+.experience-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: baseline;
+    flex-wrap: wrap;
+    margin-bottom: 0.5rem;
+}
+
+.company {
+    font-weight: bold;
+    font-size: clamp(1.1rem, 2vw, 1.5rem);
+    margin: 0;
+}
+
+.experience-meta {
+    text-align: right;
+    font-style: italic;
+    font-size: clamp(0.9rem, 1.2vw, 1.1rem);
+}
+
+.position {
+    font-style: italic;
+    margin: 0.3rem 0;
+}
+
+.responsibilities,
+.technologies {
+    margin: 0.8rem 0;
+}
+
+.achievement-list {
+    margin-top: 0.4rem;
+    padding-left: 1.2rem;
+}
+
+.achievement-list li {
+    margin-bottom: 0.2rem;
+    list-style-type: circle;
+}
+
+.technologies, .responsibilities, .achievement-list {
+    font-size: clamp(0.9rem, 1vw, 1.05rem);
+}
+
+.Skill-container {
+    display: flex;
+    gap: 5px;
+    font-weight: 500;
+    margin-top: -5px;
+}
+
+.card,
+.btn {
+  transition: background-color 0.3s ease, box-shadow 0.3s ease;
+}
+
+.skill-node h2, .skill-node button{
+    font-size: 15px;
+}
+
+
+
+
 @media (min-width: 500px) {
+
     input,
     textarea {
         padding-left: 2.5rem;
         padding: 0.5rem 1rem;
     }
+
     .node-header {
         flex-direction: row;
         justify-content: space-between;
@@ -285,7 +457,15 @@ textarea:hover {
     }
 }
 
-@media (min-width: 1024px) {
+@media (min-width: 768px) {
+    .Preview-section {
+        max-width: 800px;
+        margin: 0 auto;
+    }
+}
+
+
+@media (min-width: 1200px) {
     .App-container {
         flex-direction: row;
         gap: 15px;
@@ -296,5 +476,10 @@ textarea:hover {
     .Experience-container,
     .Skills-container {
         max-width: 700px;
+    }
+
+    .Preview-section {
+        margin: 20px;
+        height: 100%;
     }
 }
