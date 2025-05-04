@@ -4,7 +4,7 @@ This is a responsive resume builder built with **React**. It showcases a modern 
 
 ### 🌐 Live Demo
 
-🔗 [View Deployed Site](https://jazzy-bunny-e68b8c.netlify.app/)
+🔗 [View Deployed Site](https://cvbuilderkk120306.netlify.app/)
 
 ---
 
